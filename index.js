@@ -33,7 +33,6 @@ client.connect(err=>{
         const releaseDate = req.body.releaseDate;
         const status = req.body.status;
         const bookImage = imgProcess(req.files.file)
-        console.log(bookImage);
         books.insertOne({bookName, author, genre,status, releaseDate, bookImage})
         .then(result=>{
           
@@ -53,10 +52,10 @@ client.connect(err=>{
     })
     app.get('/getBook/:name',(req,res)=>{
         const name= req.params.name;
-        console.log(name);
+        
         books.find({bookName:{$regex:name}})
         .toArray((error,document)=>{
-            console.log(document);
+            
             res.send(document)
         })
     })
@@ -99,11 +98,11 @@ client.connect(err=>{
 
 
 app.listen(port,(req,res)=>{
-    console.log(`app is listining to ${port}`);
+     
 })
 
 const imgProcess=(file)=>{
-    console.log(file);
+    
     const newImg = file.data
     const encImg = newImg.toString('base64')
 
