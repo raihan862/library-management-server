@@ -116,4 +116,4 @@ const imgProcess=(file)=>{
     
 
 
-}
+} 
