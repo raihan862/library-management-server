@@ -98,7 +98,7 @@ client.connect(err=>{
 
 
 app.listen(port,(req,res)=>{
-     
+     console.log("listening");
 })
 
 const imgProcess=(file)=>{
