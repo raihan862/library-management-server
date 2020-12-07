@@ -66,13 +66,16 @@ client.connect(err=>{
         const genre =  req.body.genre;
         const releaseDate = req.body.releaseDate;
         const status = req.body.status;
-        let bookImage = req.body.bookImage
-        if (req.files) {
+        const contentType = req.body.contentType
+        const size = req.body.size;
+        const img = req.body.img;
+        let bookImage = {contentType,size,img}
+        if (req.files) {  
             bookImage = imgProcess(req.files.file)
+        } 
+        if (bookImage == null) {
+            bookImage = {}
         }
-        
-        
-        
         books.updateOne({_id:ObjectId(req.params.id)},
         {
             $set:{bookName, author, genre,status, releaseDate, bookImage}
@@ -98,7 +101,7 @@ client.connect(err=>{
 
 
 app.listen(port,(req,res)=>{
-     console.log("listening");
+     
 })
 
 const imgProcess=(file)=>{
